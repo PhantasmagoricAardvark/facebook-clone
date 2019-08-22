@@ -1,0 +1,10 @@
+<p>
+	<%= form_for @comment do |f| %>
+		<%= hidden_field_tag(:user_id, current_user.id) %>		
+		<%= hidden_field_tag(:post_id, @post.id.to_s) %>
+
+		<%= f.text_area(:content, size: "30x5") %>
+
+		<%= f.submit("Comment") %>
+	<% end %>
+</p>

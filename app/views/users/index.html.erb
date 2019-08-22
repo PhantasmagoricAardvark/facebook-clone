@@ -1,0 +1,12 @@
+<h1>Users</h1>
+<p>
+	<% @users.each do |f| %>
+		<%= gravatar_url(f, 60) %><br>
+		Username: <%= f.username %><br>
+		Email: <%= f.email %><br>
+		<%= link_to "#{f.username}", user_path(f) %><br>
+		<% if current_user.friends.include?(f) == false %>
+			(<%= link_to "Send friend request", friend_requests_path(friend_id: f), method: :post %>)<br>
+		<% end %><br>
+	<% end %>
+</p>

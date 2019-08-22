@@ -1,0 +1,19 @@
+<h1><%= @post.title %></h1>
+<p>
+	Author: <%= @post.author.username %><br>
+	Created at: <%= @post.created_at.strftime("%T %d/%m/%Y") %><br>
+	Likes: <%= @likes.size %><br>
+
+	<% if @post.user_already_liked?(@post,current_user) %>
+		<%= link_to "Unlike Post", like_path(post_id: @post), method: :delete %><br><br>
+	<% else %>
+		<%= link_to "Like post", likes_path(post_id: @post), method: :post %><br><br>
+	<% end %>
+	Content: <%= @post.content %><br><br>
+	<h2>Comments:</h2>
+	<%= render "comment_form" %>
+	<% @comments.each do |f| %>
+		<h4>Author: <%= f.user.username %> / Created at: <%= f.created_at.strftime("%T %d/%m/%Y") %></h4>
+		<%= f.content %><br><br>
+	<% end %>
+</p>

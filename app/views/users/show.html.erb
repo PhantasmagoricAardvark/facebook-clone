@@ -1,0 +1,41 @@
+<h1>
+	<%= gravatar_url(current_user) %><br>
+	<%= @user.username %><br>
+	<%= @user.email %><br>	
+</h1>
+
+
+<h3>Friends</h3>
+<p>
+	<% @user.friendships.each do |f| %>
+		<%= f.friend.username %><br>
+	<% end %>
+</p>
+
+<h3>Friend Requests</h3>
+
+<h4>Incoming</h4>
+<p>
+	<% @incoming.each do |f| %>
+		From: <%= f.user.username %>
+		<% if @user == current_user %>
+			(<%= link_to "Accept", friend_request_path(friend_id: current_user,user_id: f.user), method: :patch %>)
+		<% end %><br>
+	<% end %>
+</p><br>
+
+<h4>Pending</h4>
+<p>
+	<% @pending.each do |f| %>
+		To: <%= f.friend.username %><br>
+	<% end %>
+</p><br>
+
+<h3>Posts</h3>
+<p>
+	<% @posts.each do |f| %>
+		<b><%= f.title %></b><br>
+		<%= f.content %><br>
+		(<%= link_to "link", post_path(f) %>)<br><br>
+	<% end %>
+</p>
