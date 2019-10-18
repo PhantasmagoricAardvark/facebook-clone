@@ -18,6 +18,7 @@ class PostsController < ApplicationController
 
   def index
   	@posts = Post.where(author: current_user.friends).or(Post.where(author: current_user)).order(created_at: :desc)
+  	@all_posts = Post.all.order(created_at: :desc)
   end
 
   def show

@@ -1,6 +1,17 @@
-<h1>Posts/Timeline</h1>
+<h1>Timeline</h1>
 <p>
 	<% @posts.each do |f| %>
+		<h4><%= f.title %></h4>
+		Author: <%= f.author.username %><br>
+		Created at: <%= f.created_at.strftime("%d/%m/%Y") %><br>
+		(<%= link_to "link", post_path(f) %>)<br><br>
+	<% end %>
+</p>
+
+<h1>All Posts</h1>
+
+<p>
+	<% @all_posts.each do |f| %>
 		<h4><%= f.title %></h4>
 		Author: <%= f.author.username %><br>
 		Created at: <%= f.created_at.strftime("%d/%m/%Y") %><br>
